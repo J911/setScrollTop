@@ -1,0 +1,109 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @import url(//cdn.rawgit.com/hiun/NanumSquare/master/nanumsquare.css);
+        @import url(http://fonts.googleapis.com/css?family=Cutive);
+        *,ul,li{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            height: 200vh;
+            font-family: 'Nanum Gothic';
+        }
+        nav{
+            position: absolute;
+            top:0;
+            height:40px;
+            padding: 10px 40px;
+            box-sizing: border-box;
+            width: 100%;
+            z-index: 9999;
+            background-color:black;
+        }
+        nav ul{
+            display: inline-flex;
+            list-style: none;
+            color: white;
+        }
+        nav ul li{
+            cursor: pointer;
+        }
+        nav ul .nav-brand{
+            margin-right: 30px;
+            font-weight: 800;
+        }
+        nav ul .nav-brand img{
+            width: 180px;
+        }
+        nav ul .menu{
+            padding: 0 10px;
+            color: white;
+        }
+        nav ul .menu:hover{
+            font-weight: 600;
+        }
+        .slide-nav{
+            position: fixed;
+            top:0;
+            z-index: 9999;
+            background-color:rgba(255, 255, 255, 0.267);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.192);
+            animation-name: slide-nav;
+            animation-duration: 1s;
+        }
+        .slide-nav ul .nav-brand{
+            color: black;
+        }
+        .slide-nav ul .menu{
+            color: black;
+        }
+        .slide-nav ul .menu:hover{
+            font-weight: 800;
+        }
+        @keyframes slide-nav{
+            from {top: -40px;}
+            to {top: 0}
+        }
+    </style>
+</head>
+<body>
+    <nav id='nav' data='default'>
+        <ul>
+            <li class="nav-brand">
+                 brand
+            </li>
+            <li class="menu">menu1..</li>
+            <li class="menu">menu2..</li>
+            <li class="menu">menu3..</li>
+        </ul>
+    </nav>
+
+    <script src='./dist/jquery.min.js'></script>
+    <script src='./dist/setScrollTop.js'></script>
+    <script>
+        (function(){
+            "use strict";
+            var nav = document.getElementById('nav');
+            var scroll = new setScrollTop(nav);
+
+            scroll.setScrollListiner(40, function(res){
+                if(res.state ==  'over'){
+                    if($('#nav').attr('data') == 'default'){
+                        $('#nav').addClass('slide-nav').attr('data','over');
+                    }                    
+                } 
+                else if(res.state ==  'under'){
+                    if($('#nav').attr('data') == 'over'){
+                        $('#nav').removeClass('slide-nav').attr('data','default');
+                    }
+                } 
+            });
+        })()
+    </script>
+</body>
+</html>
