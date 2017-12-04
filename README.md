@@ -32,4 +32,7 @@ scroll.setScrollListiner(40, function(res){
         }
     } 
 });
+
 ```
+[Demo1](https://j911.github.io/setScrollTop/demo/demo1.html)
+[Demo2](https://j911.github.io/setScrollTop/demo/demo2.html)
